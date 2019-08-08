@@ -1,0 +1,197 @@
+$colors: ("white" : #FFFFFF,
+         "silver": #C0C0C0,
+         "gray": #808080,
+         "black": #000000,
+         "red": #FF0000,
+         "maroon": #800000,
+         "yellow": #FFFF00,
+         "olive": #808000,
+         "lime": #00FF00,
+         "green": #008000,
+         "aqua": #00FFFF,
+         "teal": #008080,
+         "blue": #0000FF,
+         "navy": #000080,
+         "fuchsia": #FF00FF,
+         "purple": #800080);
+
+//default: bottom
+$directions: ("right": to right,
+              "left": to left,
+              "top": to top,
+              "bottom": to bottom,
+              "top-right": to top right,
+              "top-left": to top left,
+              "bottom-right": to bottom right,
+              "bottom-left": to bottom left);
+
+// @each $color_name1, $color_value1 in $colors {
+//     @each $color_name2, $color_value2 in $colors{
+//         @if $color_name1 != $color_name2{
+//             .#{$color_name1}-#{$color_name2}{
+//                 $t1: $color_value1;
+//                 $t1: change-color($t1, $alpha: 0.4);
+//                 background: linear-gradient($t1 , $color_value2);
+//             }
+//         }
+//     }
+// }
+
+// @each $color_name1, $color_value1 in $colors {
+//     @each $color_name2, $color_value2 in $colors{
+//         @for $i from 0 through 10{
+//             @for $j from 0 through 10{
+//                 @if ($color_name1 == $color_name2){
+//                     @if ($i == $j) {
+//                         .#{$color_name1}{
+//                             background: #{$color_value1};
+//                         }
+//                     } @else {
+//                         .#{$color_name1}-o#{$i}-o#{$j}{
+//                             $t1: $color_value1;
+//                             $t1: change-color($t1, $alpha: ($i/10));
+//                             $t2: $color_value1;
+//                             $t2: change-color($t2, $alpha: ($j/10));
+//                             background: linear-gradient($t1, $t2);
+//                         }
+//                     }
+                    
+//                 } @else if ($i == 10) and ($j != 10){
+//                     .#{$color_name1}-#{$color_name2}-o#{$j}{
+//                         $t2: $color_value2;
+//                         $t2: change-color($t2, $alpha: ($j/10));
+//                         background: linear-gradient($color_value1, $t2);
+//                     }
+//                 } @else if ($j == 10) and ($i != 10){
+//                     .#{$color_name1}-o#{$i}-#{$color_name2}{
+//                         $t1: $color_value1;
+//                         $t1: change-color($t1, $alpha: ($i/10));
+//                         background: linear-gradient($t1, $color_value2);
+//                     }
+//                 } @else if ($j == 10) and ($i == 10){
+//                     .#{$color_name1}-#{$color_name2}{
+//                         background: linear-gradient($color_value1, $color_value2);
+//                     }
+//                 } @else {
+//                     .#{$color_name1}-o#{$i}-#{$color_name2}-o#{$j}{
+//                         $t1: $color_value1;
+//                         $t1: change-color($t1, $alpha: ($i/10));
+//                         $t2: $color_value2;
+//                         $t2: change-color($t2, $alpha: ($j/10));
+//                         background: linear-gradient($t1, $t2);                                              
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
+@each $color_name1, $color_value1 in $colors {
+    @each $color_name2, $color_value2 in $colors{
+        @each $dir_name, $dir_val in $directions {
+            @if $dir_name == "bottom" {
+                @for $i from 0 through 10{
+                    @for $j from 0 through 10{
+                        @if ($color_name1 == $color_name2){
+                            @if ($i == $j) {
+                                .#{$color_name1}{
+                                    background: #{$color_value1};
+                                }
+                            } @else {
+                                .#{$color_name1}-o#{$i}-o#{$j}{
+                                    $t1: $color_value1;
+                                    $t1: change-color($t1, $alpha: ($i/10));
+                                    $t2: $color_value1;
+                                    $t2: change-color($t2, $alpha: ($j/10));
+                                    background: linear-gradient($t1, $t2);
+                                }
+                            }
+                            
+                        } @else if ($i == 10) and ($j != 10){
+                            .#{$color_name1}-#{$color_name2}-o#{$j}{
+                                $t2: $color_value2;
+                                $t2: change-color($t2, $alpha: ($j/10));
+                                background: linear-gradient($color_value1, $t2);
+                            }
+                        } @else if ($j == 10) and ($i != 10){
+                            .#{$color_name1}-o#{$i}-#{$color_name2}{
+                                $t1: $color_value1;
+                                $t1: change-color($t1, $alpha: ($i/10));
+                                background: linear-gradient($t1, $color_value2);
+                            }
+                        } @else if ($j == 10) and ($i == 10){
+                            .#{$color_name1}-#{$color_name2}{
+                                background: linear-gradient($color_value1, $color_value2);
+                            }
+                        } @else {
+                            .#{$color_name1}-o#{$i}-#{$color_name2}-o#{$j}{
+                                $t1: $color_value1;
+                                $t1: change-color($t1, $alpha: ($i/10));
+                                $t2: $color_value2;
+                                $t2: change-color($t2, $alpha: ($j/10));
+                                background: linear-gradient($t1, $t2);                                              
+                            }
+                        }
+                    }
+                }
+            } @else {
+                @for $i from 0 through 10{
+                    @for $j from 0 through 10{
+                        @if ($color_name1 == $color_name2){
+                            @if ($i == $j) {
+                                .#{$color_name1}{
+                                    background: #{$color_value1};
+                                }
+                            } @else {
+                                .#{$color_name1}-o#{$i}-o#{$j}-#{$dir_name}{
+                                    $t1: $color_value1;
+                                    $t1: change-color($t1, $alpha: ($i/10));
+                                    $t2: $color_value1;
+                                    $t2: change-color($t2, $alpha: ($j/10));
+                                    background: linear-gradient(#{$dir_val}, $t1, $t2);
+                                }
+                            }
+                            
+                        } @else if ($i == 10) and ($j != 10){
+                            .#{$color_name1}-#{$color_name2}-o#{$j}-#{$dir_name}{
+                                $t2: $color_value2;
+                                $t2: change-color($t2, $alpha: ($j/10));
+                                background: linear-gradient(#{$dir_val}, $color_value1, $t2);
+                            }
+                        } @else if ($j == 10) and ($i != 10){
+                            .#{$color_name1}-o#{$i}-#{$color_name2}-#{$dir_name}{
+                                $t1: $color_value1;
+                                $t1: change-color($t1, $alpha: ($i/10));
+                                background: linear-gradient(#{$dir_val}, $t1, $color_value2);
+                            }
+                        } @else if ($j == 10) and ($i == 10){
+                            .#{$color_name1}-#{$color_name2}-#{$dir_name}{
+                                background: linear-gradient(#{$dir_val}, $color_value1, $color_value2);
+                            }
+                        } @else {
+                            .#{$color_name1}-o#{$i}-#{$color_name2}-o#{$j}-#{$dir_name}{
+                                $t1: $color_value1;
+                                $t1: change-color($t1, $alpha: ($i/10));
+                                $t2: $color_value2;
+                                $t2: change-color($t2, $alpha: ($j/10));
+                                background: linear-gradient(#{$dir_val}, $t1, $t2);                                              
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// @each $color_name1, $color_value1 in $colors {
+//     @each $color_name2, $color_value2 in $colors{
+//         @each $dir_name, $dir_val in $directions{
+//             @if $color_name1 != $color_name2{
+//                 .#{$color_name1}-#{$color_name2}-#{$dir_name}{
+//                     background: linear-gradient(#{$dir_val}, $color_value1, $color_value2);
+//                 }
+//             }
+//         }
+//     }
+// }
